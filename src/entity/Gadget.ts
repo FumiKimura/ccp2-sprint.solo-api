@@ -1,4 +1,4 @@
-import {Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable} from "typeorm";
+import {Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable, ManyToOne, JoinColumn} from "typeorm";
 import { Character } from "./Character";
 
 @Entity()
@@ -12,6 +12,10 @@ export class Gadget {
 
     @Column()
     gadgetType: string;
+
+    @ManyToOne(() => Character, character => character.id)
+    @JoinColumn()
+    owner: Character;
 
     @ManyToMany(() => Character)
     @JoinTable()
