@@ -4,8 +4,11 @@
    "description": "Doraemon Gadget API project as student at Code Chrysalis",
    "main": "index.js",
    "scripts": {
+      "dev": "node --inspect -r ts-node/register -r dotenv/config src/index.ts",
       "start": "ts-node src/index.ts",
-      "test": "echo \"Error: no test specified\" && exit 1"
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "makeMigrations": "npm run orm -- migration:generate -n",
+      "orm": "ts-node -r dotenv/config ./node_modules/typeorm/cli.js --config src/ormconfig.ts"
    },
    "repository": {
       "type": "git",
@@ -20,6 +23,7 @@
    "dependencies": {
       "express": "^4.17.1",
       "mysql": "^2.14.1",
+      "pg": "^8.7.1",
       "reflect-metadata": "^0.1.10",
       "typeorm": "0.2.37"
    },
