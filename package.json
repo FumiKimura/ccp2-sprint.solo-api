@@ -8,7 +8,8 @@
       "start": "ts-node src/index.ts",
       "test": "echo \"Error: no test specified\" && exit 1",
       "makeMigrations": "npm run orm -- migration:generate -n",
-      "orm": "ts-node -r dotenv/config ./node_modules/typeorm/cli.js --config src/ormconfig.ts"
+      "orm": "ts-node -r dotenv/config ./node_modules/typeorm/cli.js --config src/ormconfig.ts",
+      "migrate": "npm run orm -- migration:run"
    },
    "repository": {
       "type": "git",
