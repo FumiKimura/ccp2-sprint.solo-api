@@ -1,14 +1,27 @@
 import { Router, Request, Response } from "express";
+import GadgetManager from "./manager";
+
 
 class GadgetController {
+    public path = "/gadget";
     public router: Router;
+    public manager: GadgetManager;
 
     constructor(){
+        this.router = this.setupRoute();
+        this.manager = new GadgetManager();
+    }
+
+    protected setupRoute(){
         const router = Router();
-        this.router = router.get("/", 
-        (req: Request, res: Response) => {
-            res.send("<h1>DOKODEMO DOOR!!!</h1>");
-        });
+        router.get("/allgadget", this.getAllGadgets);
+
+        return router;
+    }
+
+    protected getAllGadgets = async (req: Request, res:Response): Promise<void> => {
+        const gadget = await this.manager.getAllGadget();
+        res.send(gadget);
     }
 }
 

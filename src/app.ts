@@ -8,10 +8,10 @@ class App {
     public readonly app: Application;
     public readonly port: number;
 
-    constructor(port: number, service: GadgetController){
+    constructor(port: number, gadgetService: GadgetController){
         this.app = express();
         this.port = port || App.DEFAULT_PORT;
-        this.app.use("/", service.router);
+        this.app.use(gadgetService.path, gadgetService.router);
     }
 
     public start(): void {
