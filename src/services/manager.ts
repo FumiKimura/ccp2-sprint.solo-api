@@ -14,6 +14,14 @@ class GadgetManager{
         });
         return Promise.resolve(gadgets);
     }
+
+    public async getGadgetList(num: number): Promise<Gadget[]>{
+        const gadgets = await this.gadgetRepository.find({
+            relations:["characters"],
+            take: num
+        });
+        return Promise.resolve(gadgets);
+    }
 }
 
 export default GadgetManager;
