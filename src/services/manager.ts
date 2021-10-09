@@ -9,7 +9,9 @@ class GadgetManager{
     }
 
     public async getAllGadget(): Promise<Gadget[]>{
-        const gadgets = await this.gadgetRepository.find();
+        const gadgets = await this.gadgetRepository.find({
+            relations:["characters"]
+        });
         return Promise.resolve(gadgets);
     }
 }
