@@ -1,5 +1,6 @@
 import { getRepository, Repository, DeleteResult } from "typeorm";
 import { Gadget } from "../entity/Gadget";
+import { Character } from "../entity/Character";
 
 class GadgetManager{    
     public gadgetRepository: Repository<Gadget>;
@@ -21,6 +22,11 @@ class GadgetManager{
             take: num
         });
         return Promise.resolve(gadgets);
+    }
+
+    public async postNewGadget(partial: Gadget): Promise<Gadget> {
+        const newGadget = new Gadget();
+        return new Gadget();
     }
 }
 

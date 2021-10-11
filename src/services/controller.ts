@@ -1,6 +1,6 @@
 import { Router, Request, Response } from "express";
-import { parse } from "querystring";
 import GadgetManager from "./manager";
+import { Gadget } from "../entity/Gadget";
 
 
 class GadgetController {
@@ -17,6 +17,7 @@ class GadgetController {
         const router = Router();
         router.get("/allgadget", this.getAllGadgets);
         router.get("/gadgetlist", this.getGadgetList);
+        router.post("/newgadget", this.postNewGadget);
         return router;
     }
 
@@ -35,7 +36,20 @@ class GadgetController {
             gadget = await this.manager.getGadgetList(parseInt(num as string));
             res.send(gadget);
         }
-        
+    }
+
+    protected postNewGadget = async (req: Request, res:Response): Promise<void> => {
+        try{
+            const newGadget: Gadget = new Gadget();
+            newGadget.gadgetName = req.body.gadgeName; 
+            newGadget.gadgetType = req.body.gadgetType;
+            newGadget.owner = req.body.owner;
+            newGadget.characters = req.body.characterId;
+            const newGagdet = this.manager.postNewGadget(newGadget);
+            //Need to implement get Character by id endpoint to save new gadget
+        }catch(e){
+            res.sendStatus(500);
+        }
     }
 }
 
