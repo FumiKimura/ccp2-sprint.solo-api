@@ -17,7 +17,9 @@ export class Gadget {
     @JoinColumn()
     owner: Character;
 
-    @ManyToMany(() => Character)
+    @ManyToMany(() => Character, {
+        cascade:true
+    })
     @JoinTable()
     characters: Character[];
 }

@@ -1,6 +1,6 @@
 import { Router, Request, Response } from "express";
 import GadgetManager from "./manager";
-import { Gadget } from "../entity/Gadget";
+import { Gadget } from "../../entity/Gadget";
 
 
 class GadgetController {
@@ -56,8 +56,8 @@ class GadgetController {
             newGadget.gadgetType = req.body.gadgetType;
             newGadget.owner = req.body.owner;
             newGadget.characters = req.body.characterId;
-            //const newGagdet = this.manager.postNewGadget(newGadget);
-            //Need to implement get Character by id endpoint to save new gadget
+            await this.manager.postNewGadget(newGadget);
+            res.send(newGadget);
         }catch(e){
             res.sendStatus(500);
         }

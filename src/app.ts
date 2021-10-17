@@ -1,5 +1,6 @@
 import express, {Application} from "express";
-import GadgetController from "./services/controller";
+import GadgetController from "./services/gadget/controller";
+import CharacterController from "./services/character/controller";
 
 class App {
 
@@ -8,10 +9,11 @@ class App {
     public readonly app: Application;
     public readonly port: number;
 
-    constructor(port: number, gadgetService: GadgetController){
+    constructor(port: number, gadgetService: GadgetController, characterService: CharacterController){
         this.app = express();
         this.port = port || App.DEFAULT_PORT;
         this.app.use(gadgetService.path, gadgetService.router);
+        this.app.use(characterService.path, characterService.router);
     }
 
     public start(): void {
