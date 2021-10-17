@@ -9,14 +9,14 @@ class GadgetManager{
         this.gadgetRepository = getRepository(Gadget);
     }
 
-    public async getAllGadget(): Promise<Gadget[]>{
+    public async getAllGadget(): Promise<Gadget[]> {
         const gadgets = await this.gadgetRepository.find({
             relations:["characters"]
         });
         return Promise.resolve(gadgets);
     }
 
-    public async getGadgetList(num: number): Promise<Gadget[]>{
+    public async getGadgetList(num: number): Promise<Gadget[]> {
         const gadgets = await this.gadgetRepository.find({
             relations:["characters"],
             take: num
@@ -24,10 +24,18 @@ class GadgetManager{
         return Promise.resolve(gadgets);
     }
 
-    public async postNewGadget(partial: Gadget): Promise<Gadget> {
-        const newGadget = new Gadget();
-        return new Gadget();
+    public async getGadgetById(id: number): Promise<Gadget[]> {
+        const gadget = await this.gadgetRepository.find({
+            relations:["characters"],
+            where: {id:id}
+        })
+        return Promise.resolve(gadget);
     }
+
+    // public async postNewGadget(partial: Gadget): Promise<Gadget> {
+    //     const newGadget = new Gadget();
+    //     return new Gadget();
+    // }
 }
 
 export default GadgetManager;

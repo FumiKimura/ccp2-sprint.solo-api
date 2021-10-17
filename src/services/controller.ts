@@ -17,6 +17,7 @@ class GadgetController {
         const router = Router();
         router.get("/allgadget", this.getAllGadgets);
         router.get("/gadgetlist", this.getGadgetList);
+        router.get("/gadgetbyid", this.getGadgetById);
         router.post("/newgadget", this.postNewGadget);
         return router;
     }
@@ -38,6 +39,16 @@ class GadgetController {
         }
     }
 
+    protected getGadgetById = async (req: Request, res:Response): Promise<void> => {
+        const { id } = req.query;
+        if(id === undefined){
+            res.sendStatus(404);
+        }else{
+            const gadget = await this.manager.getGadgetById(parseInt(id as string));
+            res.send(gadget);
+        }
+    }
+
     protected postNewGadget = async (req: Request, res:Response): Promise<void> => {
         try{
             const newGadget: Gadget = new Gadget();
@@ -45,7 +56,7 @@ class GadgetController {
             newGadget.gadgetType = req.body.gadgetType;
             newGadget.owner = req.body.owner;
             newGadget.characters = req.body.characterId;
-            const newGagdet = this.manager.postNewGadget(newGadget);
+            //const newGagdet = this.manager.postNewGadget(newGadget);
             //Need to implement get Character by id endpoint to save new gadget
         }catch(e){
             res.sendStatus(500);
