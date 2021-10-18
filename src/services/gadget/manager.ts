@@ -1,6 +1,8 @@
 import { getRepository, Repository, DeleteResult } from "typeorm";
 import { Gadget } from "../../entity/Gadget";
 import { Character } from "../../entity/Character";
+import CharacterManager from "../character/manager";
+import { response } from "express";
 
 class GadgetManager{    
     public gadgetRepository: Repository<Gadget>;
@@ -24,16 +26,31 @@ class GadgetManager{
         return Promise.resolve(gadgets);
     }
 
-    public async getGadgetById(id: number): Promise<Gadget[]> {
-        const gadget = await this.gadgetRepository.find({
+    public async getGadgetById(id: number): Promise<Gadget> {
+        const gadget = await this.gadgetRepository.findOne({
             relations:["characters"],
             where: {id:id}
-        })
+        });
         return Promise.resolve(gadget);
     }
 
-    public async postNewGadget(newGadget: Gadget): Promise<void> {
-        await this.gadgetRepository.save(newGadget);
+    public async postNewGadget(partial: Gadget, owner: number, characters: Array<number>): Promise<Gadget> {
+        const characterManager = new CharacterManager();
+        
+        partial.owner = await characterManager.getCharacterById(owner);
+        partial.characters = await Promise.all(characters.map(async (id) => {
+            return await characterManager.getCharacterById(id)
+        }));
+
+        if(!partial.gadgetName || 
+        !partial.gadgetType ||
+        !partial.owner || 
+        partial.characters.some(character => !character)){
+            throw new Error("There is an error in input");
+        }
+            
+        await this.gadgetRepository.save(partial);
+        return Promise.resolve(partial);
     }
 }
 

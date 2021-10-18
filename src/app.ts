@@ -12,6 +12,7 @@ class App {
     constructor(port: number, gadgetService: GadgetController, characterService: CharacterController){
         this.app = express();
         this.port = port || App.DEFAULT_PORT;
+        this.app.use(express.json())
         this.app.use(gadgetService.path, gadgetService.router);
         this.app.use(characterService.path, characterService.router);
     }

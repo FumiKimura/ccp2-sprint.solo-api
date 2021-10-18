@@ -20,9 +20,9 @@ class CharacterManager {
         return Promise.resolve(characters);
     }
 
-    public async getCharacterById(id: number): Promise<Character []> {
-        const character = await this.characterRespository.find({
-            where: {id:id}
+    public async getCharacterById(id: number): Promise<Character> {
+        const character = await this.characterRespository.findOne({
+            where: {id: id}
         })
         return Promise.resolve(character);
     }

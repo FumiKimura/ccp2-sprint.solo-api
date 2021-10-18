@@ -52,14 +52,14 @@ class GadgetController {
     protected postNewGadget = async (req: Request, res:Response): Promise<void> => {
         try{
             const newGadget: Gadget = new Gadget();
-            newGadget.gadgetName = req.body.gadgeName; 
+            newGadget.gadgetName = req.body.gadgetName; 
             newGadget.gadgetType = req.body.gadgetType;
-            newGadget.owner = req.body.owner;
-            newGadget.characters = req.body.characterId;
-            await this.manager.postNewGadget(newGadget);
-            res.send(newGadget);
+            const owner = parseInt(req.body.ownerId);
+            const characters = req.body.characterId.map(id => parseInt(id));
+            res.send(await this.manager.postNewGadget(newGadget, owner, characters));
         }catch(e){
-            res.sendStatus(500);
+            console.log(e);
+            res.sendStatus(400);
         }
     }
 }
