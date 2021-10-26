@@ -3,6 +3,7 @@ import { Gadget } from "../../entity/Gadget";
 import { Character } from "../../entity/Character";
 import CharacterManager from "../character/manager";
 import { response } from "express";
+import { getDefaultSettings } from "http2";
 
 class GadgetManager{    
     public gadgetRepository: Repository<Gadget>;
@@ -52,6 +53,11 @@ class GadgetManager{
         await this.gadgetRepository.save(partial);
         return Promise.resolve(partial);
     }
+
+    public async updateGadget(updateGadget:Gadget): Promise<Gadget> {
+        return Promise.resolve(new Gadget());
+    }
+
 }
 
 export default GadgetManager;

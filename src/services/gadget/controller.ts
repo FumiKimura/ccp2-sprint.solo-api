@@ -19,6 +19,7 @@ class GadgetController {
         router.get("/gadgetlist", this.getGadgetList);
         router.get("/gadgetbyid", this.getGadgetById);
         router.post("/newgadget", this.postNewGadget);
+        router.patch("/updategadget", this.updateGadget);
         return router;
     }
 
@@ -60,6 +61,23 @@ class GadgetController {
         }catch(e){
             console.log(e);
             res.sendStatus(400);
+        }
+    }
+
+    protected updateGadget = async (req: Request, res:Response): Promise<void> => {
+        try {
+            const updateGadget = new Gadget();
+            updateGadget.gadgetName = req.body.gadgetName; 
+            updateGadget.gadgetType = req.body.gadgetType;
+            const owner = parseInt(req.body.ownerId);
+
+            //Cannot append new character to gadget's user and delete specific a user
+            //New array of characters overwrites given gadgets users (array of characters)
+            const characters = req.body.characterId.map(id => parseInt(id));
+            this.manager.updateGadget(updateGadget);
+        }catch(e){
+            console.log(e);
+            res.sendStatus(404);
         }
     }
 }
