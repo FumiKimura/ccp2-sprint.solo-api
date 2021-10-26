@@ -67,6 +67,7 @@ class GadgetController {
     protected updateGadget = async (req: Request, res:Response): Promise<void> => {
         try {
             const updateGadget = new Gadget();
+            const id = req.body.id;
             updateGadget.gadgetName = req.body.gadgetName; 
             updateGadget.gadgetType = req.body.gadgetType;
             const owner = parseInt(req.body.ownerId);
@@ -74,7 +75,7 @@ class GadgetController {
             //Cannot append new character to gadget's user and delete specific a user
             //New array of characters overwrites given gadgets users (array of characters)
             const characters = req.body.characterId.map(id => parseInt(id));
-            this.manager.updateGadget(updateGadget);
+            this.manager.updateGadget(updateGadget, id as number);
         }catch(e){
             console.log(e);
             res.sendStatus(404);

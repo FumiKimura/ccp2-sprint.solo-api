@@ -54,7 +54,7 @@ class GadgetManager{
         return Promise.resolve(partial);
     }
 
-    public async updateGadget(updateGadget:Gadget): Promise<Gadget> {
+    public async updateGadget(updateGadget:Gadget, id: number): Promise<Gadget> {
         return Promise.resolve(new Gadget());
     }
 
