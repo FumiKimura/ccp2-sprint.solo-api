@@ -54,8 +54,24 @@ class GadgetManager{
         return Promise.resolve(partial);
     }
 
-    public async updateGadget(updateGadget:Gadget, id: number): Promise<Gadget> {
-        return Promise.resolve(new Gadget());
+    public async updateGadget(id: number, updateGadget:Gadget, owner: number, characters: Array<number>): Promise<Gadget> {
+        const characterManager = new CharacterManager();
+
+        const update = await this.gadgetRepository.findOne({
+            relations:["characters"],
+            where: {id:id}
+        });
+
+        //Make it work for now. Refactor later.
+        if(updateGadget.gadgetName) update.gadgetName = updateGadget.gadgetName;
+        if(updateGadget.gadgetType) update.gadgetType = updateGadget.gadgetType;
+        if(owner) update.owner = await characterManager.getCharacterById(owner);
+        if(characters) update.characters = await Promise.all(characters.map(async (id) => {
+            return await characterManager.getCharacterById(id)
+        }));
+
+        await this.gadgetRepository.save(update);
+        return Promise.resolve(update);
     }
 
 }
