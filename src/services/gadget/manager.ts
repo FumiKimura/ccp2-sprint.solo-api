@@ -14,14 +14,14 @@ class GadgetManager{
 
     public async getAllGadget(): Promise<Gadget[]> {
         const gadgets = await this.gadgetRepository.find({
-            relations:["characters"]
+            relations:["owner","characters"]
         });
         return Promise.resolve(gadgets);
     }
 
     public async getGadgetList(num: number): Promise<Gadget[]> {
         const gadgets = await this.gadgetRepository.find({
-            relations:["characters"],
+            relations:["owner","characters"],
             take: num
         });
         return Promise.resolve(gadgets);
@@ -29,7 +29,7 @@ class GadgetManager{
 
     public async getGadgetById(id: number): Promise<Gadget> {
         const gadget = await this.gadgetRepository.findOne({
-            relations:["characters"],
+            relations:["owner","characters"],
             where: {id:id}
         });
         return Promise.resolve(gadget);
@@ -58,7 +58,7 @@ class GadgetManager{
         const characterManager = new CharacterManager();
 
         const update = await this.gadgetRepository.findOne({
-            relations:["characters"],
+            relations:["owner","characters"],
             where: {id:id}
         });
 

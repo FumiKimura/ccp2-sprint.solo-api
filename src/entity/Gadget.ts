@@ -14,7 +14,6 @@ export class Gadget {
     gadgetType: string;
 
     @ManyToOne(() => Character, character => character.id)
-    @JoinColumn()
     owner: Character;
 
     @ManyToMany(() => Character, {
