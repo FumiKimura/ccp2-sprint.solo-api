@@ -20,6 +20,7 @@ class GadgetController {
         router.get("/gadgetbyid", this.getGadgetById);
         router.post("/newgadget", this.postNewGadget);
         router.patch("/updategadget", this.updateGadget);
+        router.delete("/deletegadget", this.deleteGadget);
         return router;
     }
 
@@ -83,6 +84,12 @@ class GadgetController {
             console.log(e);
             res.sendStatus(404);
         }
+    }
+
+    protected deleteGadget = async (req: Request, res: Response): Promise<void> => {
+        const id = req.query.id;
+        const response = await this.manager.deleteGadget(parseInt(id as string));
+        res.send(response);
     }
 }
 

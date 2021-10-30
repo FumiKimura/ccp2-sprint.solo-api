@@ -4,6 +4,7 @@ import { Character } from "../../entity/Character";
 import CharacterManager from "../character/manager";
 import { response } from "express";
 import { getDefaultSettings } from "http2";
+import { removeAllListeners } from "process";
 
 class GadgetManager{    
     public gadgetRepository: Repository<Gadget>;
@@ -74,6 +75,13 @@ class GadgetManager{
         return Promise.resolve(update);
     }
 
+    public async deleteGadget(id: number): Promise<Gadget> {
+        const gadget = await this.gadgetRepository.findOne({
+            id:id
+        });
+        await this.gadgetRepository.remove(gadget);
+        return Promise.resolve(gadget);
+    }
 }
 
 export default GadgetManager;
