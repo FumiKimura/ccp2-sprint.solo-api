@@ -22,6 +22,5 @@ export class Character {
     @ManyToMany(() => Gadget, {
         cascade:true
     })
-    @JoinTable()
     gadgets: Gadget[];
 }

@@ -10,7 +10,9 @@
       "makeMigrations": "npm run orm -- migration:generate -n",
       "orm": "ts-node -r dotenv/config ./node_modules/typeorm/cli.js --config src/ormconfig.ts",
       "migrate": "npm run orm -- migration:run",
-      "rollback": "npm run orm -- migration:revert"
+      "rollback": "npm run orm -- migration:revert",
+      "seeder": "ts-node -r dotenv/config ./node_modules/typeorm-seeding/dist/cli.js",
+      "seed": "npm run seeder -- --configName src/ormconfig.ts seed"
    },
    "repository": {
       "type": "git",
@@ -27,7 +29,8 @@
       "mysql": "^2.14.1",
       "pg": "^8.7.1",
       "reflect-metadata": "^0.1.10",
-      "typeorm": "0.2.37"
+      "typeorm": "0.2.37",
+      "typeorm-seeding": "^1.6.1"
    },
    "devDependencies": {
       "@types/express": "^4.17.13",
