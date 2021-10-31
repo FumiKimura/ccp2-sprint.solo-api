@@ -11,76 +11,90 @@ This is a solo project created while attending part-time immersive course at Cod
 
 1. Create simple front-end application
 2. Write test
-3. Deploy the application
+3. Deploy the application 
 
 ## Getting Started
 
 ### 1. Clone project and install dependencies
 
-1. Clone project
-
-   ```bash
-   git clone https://github.com/FumiKimura/ccp2-sprint.solo-api.git
-   ```
-
+1. Clone project 
+    
+    ```bash
+    git clone https://github.com/FumiKimura/ccp2-sprint.solo-api.git
+    ```
+    
 2. cd into project directory and install packages
-
-   ```bash
-   cd ccp2-sprint.solo-api
-   npm install
-   ```
+    
+    ```bash
+    cd ccp2-sprint.solo-api
+    npm install
+    ```
+    
 
 ### 2. Creating Database
 
 Postgres database was used in this project. If you don't have postgres installed, make sure to install it first.
 
-1. Start postgres
-
-   ```sql
-   psql
-   ```
-
+1. Start postgres 
+    
+    ```sql
+    psql
+    ```
+    
 2. Create Database
-
-   ```bash
-   CREATE DATABASE YOUR_DB_NAME
-   ```
+    
+    ```bash
+    CREATE DATABASE YOUR_DB_NAME
+    ```
+    
 
 ### 3. Setup .env file
 
-In the root project directory, create .env file. This is where you specify login information to the database (.env is in the .gitignore).
+In the root project directory, create .env file. This is where you specify login information to the database (.env is in the .gitignore). 
 
-1. Write following to the .env file
+1. Write following to the .env file 
+    
+    ```bash
+    DB_NAME=YOUR_DB_NAME
+    DB_USER=YOUR_DB_USERNAME
+    DB_PASSWORD=YOUR_DB_PASSWORD
+    DB_HOST=YOUR_DB_HOST
+    DB_PORT=YOUR_DB_PORT
+    ```
+    
 
-   ```bash
-   DB_NAME=YOUR_DB_NAME
-   DB_USER=YOUR_DB_USERNAME
-   DB_PASSWORD=YOUR_DB_PASSWORD
-   DB_HOST=YOUR_DB_HOST
-   DB_PORT=YOUR_DB_PORT
-   ```
+### 4. Run Migration to Create Tables
 
-### 4. Seed the database
+1. Run migration
+    
+    ```bash
+    npm run migrate
+    ```
+    
+
+### 5. Seed the database
 
 This projected used typeorm, so typeorm-seeding package should be used to seed the data. Unfortunately, I have not figured out how to seed the data with many-to-many relationship. If you know how to do it, please kindly reach out.
 
 1. cd into src/sql directory and run following:
-
-   ```bash
-   psql -d YOUR_DB_NAME -f insertSeed.sql
-   ```
+    
+    ```bash
+    psql -d YOUR_DB_NAME -f insertSeed.sql
+    ```
+    
 
 If seeding was successful, you are ready to start server and calling API!
 
-### 5. Start Express Server
+### 6. Start Express Server
 
 1. Make sure you are in the project directory
-
-   ```bash
-   npm run start
-   ```
-
-   if you see "Started Listening to 8080," then server started and listening to port 8080.
+    
+    ```bash
+    npm run start
+    ```
+    
+    if you see "Started Listening to 8080," then server started and listening to port 8080.
+    
 
 ## API Documentation
 
@@ -92,7 +106,7 @@ Result: returns all gadgets in the database
 
 Parameter: None
 
-Example:
+Example: 
 
 ```bash
 localhost:8080/gadget/allgadget
@@ -100,7 +114,7 @@ localhost:8080/gadget/allgadget
 
 GET /gadget/gadgetlist?num=n
 
-Result: returns first n gadgets
+Result: returns first n gadgets 
 
 Parameter: num=n
 
@@ -152,9 +166,9 @@ curl --location --request POST 'localhost:8080/gadget/' \
 
 PATCH /gadget?id=n
 
-Result: updated gadget information
+Result: updated gadget information 
 
-Parameter:
+Parameter: 
 
 1. id=n
 2. body should only include property that you want to update
