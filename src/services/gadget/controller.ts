@@ -18,9 +18,9 @@ class GadgetController {
         router.get("/allgadget", this.getAllGadgets);
         router.get("/gadgetlist", this.getGadgetList);
         router.get("/gadgetbyid", this.getGadgetById);
-        router.post("/newgadget", this.postNewGadget);
-        router.patch("/updategadget", this.updateGadget);
-        router.delete("/deletegadget", this.deleteGadget);
+        router.post("", this.postNewGadget);
+        router.patch("", this.updateGadget);
+        router.delete("", this.deleteGadget);
         return router;
     }
 
@@ -47,7 +47,7 @@ class GadgetController {
             res.sendStatus(404);
         }else{
             const gadget = await this.manager.getGadgetById(parseInt(id as string));
-            res.send(gadget);
+            !gadget ? res.sendStatus(404): res.send(gadget);
         }
     }
 
@@ -56,8 +56,8 @@ class GadgetController {
             const newGadget: Gadget = new Gadget();
             newGadget.gadgetName = req.body.gadgetName; 
             newGadget.gadgetType = req.body.gadgetType;
-            const owner = parseInt(req.body.ownerId);
-            const characters = req.body.characterId.map(id => parseInt(id));
+            const owner = parseInt(req.body.owner);
+            const characters = req.body.characters.map(id => parseInt(id));
             res.send(await this.manager.postNewGadget(newGadget, owner, characters));
         }catch(e){
             console.log(e);
@@ -76,7 +76,7 @@ class GadgetController {
             //Cannot append new character to gadget's user and delete specific a user
             //New array of characters overwrites given gadgets users (array of characters)
             let characters: Array<number>;
-            if(req.body.characterId) characters = req.body.characterId.map(id => parseInt(id));
+            if(req.body.characters) characters = req.body.characters.map(id => parseInt(id));
             
             const response = await this.manager.updateGadget(parseInt(id as string), updateInfo, owner, characters);
             res.send(response);
@@ -89,7 +89,7 @@ class GadgetController {
     protected deleteGadget = async (req: Request, res: Response): Promise<void> => {
         const id = req.query.id;
         const response = await this.manager.deleteGadget(parseInt(id as string));
-        res.send(response);
+        !response ? res.sendStatus(404):res.send(response);
     }
 }
 

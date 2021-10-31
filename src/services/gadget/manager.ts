@@ -1,10 +1,6 @@
-import { getRepository, Repository, DeleteResult } from "typeorm";
+import { DeleteResult, getRepository, Repository } from "typeorm";
 import { Gadget } from "../../entity/Gadget";
-import { Character } from "../../entity/Character";
 import CharacterManager from "../character/manager";
-import { response } from "express";
-import { getDefaultSettings } from "http2";
-import { removeAllListeners } from "process";
 
 class GadgetManager{    
     public gadgetRepository: Repository<Gadget>;
@@ -77,9 +73,10 @@ class GadgetManager{
 
     public async deleteGadget(id: number): Promise<Gadget> {
         const gadget = await this.gadgetRepository.findOne({
-            id:id
+            relations:["owner","characters"],
+            where: {id:id}
         });
-        await this.gadgetRepository.remove(gadget);
+        if(gadget) await this.gadgetRepository.delete({id: id});
         return Promise.resolve(gadget);
     }
 }
