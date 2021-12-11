@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ReactJson from 'react-json-view';
 import './App.css';
 import Navigation from './navigation/navigation';
+import axios from 'axios';
 
 function App() {
   const myJSONObject = {
@@ -12,13 +13,17 @@ function App() {
 
   //Hooks
   const [request, setRequest] = useState("GET");
-  const [path, setPath] = useState("");
+  const [apiPath, setApiPath] = useState("");
+  const [json, setJSON] = useState(myJSONObject);
 
   //Handler
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>){  
     event.preventDefault();
-    switch (path) {
+    let response;
+    switch (request) {
       case "GET":
+        response = await axios.get("localhost:8080/" + apiPath);
+        console.log(response);
         break;
       case "POST":
         break;
@@ -34,7 +39,7 @@ function App() {
   }
 
   const handlePathChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setPath(event.target.value);
+    setApiPath(event.target.value);
   }
   
   //HTML
@@ -54,7 +59,7 @@ function App() {
         <input className="submitBtn" type="submit"></input>
       </form>
       <div className="jsonViewContainer">
-        <ReactJson src={myJSONObject}></ReactJson>  
+        <ReactJson src={json}></ReactJson>  
       </div>
     </div>
   );

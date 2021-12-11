@@ -26,6 +26,8 @@
    },
    "homepage": "https://github.com/FumiKimura/ccp2-sprint.solo-api#readme",
    "dependencies": {
+      "axios": "^0.24.0",
+      "cors": "^2.8.5",
       "express": "^4.17.1",
       "mysql": "^2.14.1",
       "pg": "^8.7.1",

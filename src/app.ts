@@ -2,6 +2,7 @@ import express, {Application} from "express";
 import GadgetController from "./services/gadget/controller";
 import CharacterController from "./services/character/controller";
 import rootController from "./services/root/controller";
+import cors from "cors";
 
 class App {
 
@@ -12,11 +13,13 @@ class App {
     constructor(port: number, gadgetService: GadgetController, characterService: CharacterController, rootService: rootController){
         this.app = express();
         this.port = port || App.DEFAULT_PORT;
+        this.app.use(cors())
         this.app.use(express.json())
         this.app.use(gadgetService.path, gadgetService.router);
         this.app.use(characterService.path, characterService.router);
         this.app.use(rootService.path, rootService.router);
         this.app.use(rootService.path, express.static(rootService.filepath));
+       
     }
 
     public start(): void {
