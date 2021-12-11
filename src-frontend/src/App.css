@@ -1,0 +1,20 @@
+.App {
+    background-color: lightblue;
+    height:100%;
+    text-align: center;   
+}
+
+.pathLabel {
+    font-size: 30px;
+    background-color: lightgray;
+}
+
+.pathInput {
+    font-size: 25px;
+    border-radius: 5px;
+}
+
+.submitBtn {
+    width: 100px;
+    height: 30px;
+}
