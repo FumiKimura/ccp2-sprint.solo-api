@@ -16,6 +16,12 @@ function App() {
       <h1 className="title">DORA API</h1>
       <form>
         <label className="pathLabel">https://url/api/ </label>
+        <select >
+            <option value="GET">GET</option>
+            <option value="POST">POST</option>
+            <option value="PATCH">PATCH</option>
+            <option value="DELETE">DELETE</option>
+          </select>
         <input className="pathInput" type="text" id="path"></input>
         <input className="submitBtn" type="submit"></input>
       </form>
