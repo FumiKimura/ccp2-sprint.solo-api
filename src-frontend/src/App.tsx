@@ -14,7 +14,7 @@ function App() {
   //Hooks
   const [request, setRequest] = useState("GET");
   const [apiPath, setApiPath] = useState("");
-  const [json, setJSON] = useState(myJSONObject);
+  const [json, setJSON] = useState([]);
 
   //Handler
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>){  
@@ -22,8 +22,8 @@ function App() {
     let response;
     switch (request) {
       case "GET":
-        response = await axios.get("localhost:8080/" + apiPath);
-        console.log(response);
+        response = await axios.get("http://localhost:8080/" + apiPath);
+        setJSON(response.data);
         break;
       case "POST":
         break;
