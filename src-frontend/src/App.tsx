@@ -68,6 +68,10 @@ function App() {
         setJSON={setJSON}
       />
       <h1 className="title">DORA API</h1>
+      <h2>The RESTful Doraemon Gadget API</h2>
+      <h4>All the Doraemon Gadget data you will need is here.<br />
+      You can interact with database via CRUD fucntionality
+      </h4>
       <form onSubmit={handleSubmit}>
         <select onChange={handleRequestChange}>
             <option value="GET">GET</option>
@@ -84,9 +88,6 @@ function App() {
           <ReactJson src={json} onEdit={onEdit} onAdd={onAdd} onDelete={onDelete}></ReactJson>
         </div>
       </div>
-      <footer className="footer">
-        Thank you for using DORA API.
-      </footer>
     </div>
   );
 }
