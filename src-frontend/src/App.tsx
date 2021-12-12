@@ -55,9 +55,15 @@ function App() {
     setJSON(event.updated_src);
   }
 
+  //Root styling
+  const rootStyle = {
+    backgroundColor : 'lightblue',
+    height : '100vh'
+  }
+
   //HTML
   return (
-    <div className="App">
+    <div className="App" style={rootStyle}>
       <Navigation 
         setJSON={setJSON}
       />
@@ -78,6 +84,9 @@ function App() {
           <ReactJson src={json} onEdit={onEdit} onAdd={onAdd} onDelete={onDelete}></ReactJson>
         </div>
       </div>
+      <footer className="footer">
+        Thank you for using DORA API.
+      </footer>
     </div>
   );
 }
