@@ -19,7 +19,7 @@
 }
 
 .jsonViewContainer {
-    margin: 4em auto;
+    margin: 2em auto;
     padding: 1em;
     width: 75%;
 }
@@ -29,4 +29,8 @@
     overflow: scroll;
     height: 50vh;
     background-color: white;
+}
+
+.docLink {
+    font-size: 24px;
 }
