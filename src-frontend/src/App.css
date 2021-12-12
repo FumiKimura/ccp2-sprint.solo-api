@@ -27,6 +27,7 @@
 .jsonViewContainerChild {
     text-align: left;
     overflow: scroll;
+    height: 50vh;
     background-color: white;
 }
 
