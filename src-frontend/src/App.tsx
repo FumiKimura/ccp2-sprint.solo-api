@@ -41,7 +41,19 @@ function App() {
   const handlePathChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setApiPath(event.target.value);
   }
+
+  const onEdit = (event: any) => {
+    setJSON(event.updated_src);
+  }
   
+  const onAdd = (event: any) => {
+    setJSON(event.updated_src);
+  }
+
+  const onDelete = (event: any) => {
+    setJSON(event.updated_src);
+  }
+
   //HTML
   return (
     <div className="App">
@@ -59,7 +71,7 @@ function App() {
         <input className="submitBtn" type="submit"></input>
       </form>
       <div className="jsonViewContainer">
-        <ReactJson src={json}></ReactJson>  
+        <ReactJson src={json} onEdit={onEdit} onAdd={onAdd} onDelete={onDelete}></ReactJson>  
       </div>
     </div>
   );
