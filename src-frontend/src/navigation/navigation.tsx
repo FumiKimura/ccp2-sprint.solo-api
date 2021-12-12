@@ -1,10 +1,23 @@
 import React from 'react';
 import './navigation.css';
 
-function Navigation() {
+interface NavigationProps {
+  setJSON: (json: any) => void;
+}
+
+function Navigation(prop: NavigationProps) {
+  //Hooks
+
+  //Handler
+  const handleReset = (): void => {
+    prop.setJSON({});
+  }
+  //HTML
     return (
       <div className="navigation">
-        <button type="button">Reset</button>
+        <button className="signInBtn" type="button">Login</button>
+        <button className="signUpBtn" type="button">Sign up</button>
+        <button className="resetBtn" type="button" onClick={handleReset}>Reset</button>
       </div>
     );
 }

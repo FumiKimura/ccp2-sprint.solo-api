@@ -58,7 +58,9 @@ function App() {
   //HTML
   return (
     <div className="App">
-      <Navigation />
+      <Navigation 
+        setJSON={setJSON}
+      />
       <h1 className="title">DORA API</h1>
       <form onSubmit={handleSubmit}>
         <select onChange={handleRequestChange}>
