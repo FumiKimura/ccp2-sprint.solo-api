@@ -4,7 +4,7 @@ import './navigation.css';
 function Navigation() {
     return (
       <div className="navigation">
-          <p>Here is nagivation</p>
+        <button type="button">Reset</button>
       </div>
     );
 }

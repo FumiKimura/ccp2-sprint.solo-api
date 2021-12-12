@@ -5,11 +5,6 @@ import Navigation from './navigation/navigation';
 import axios from 'axios';
 
 function App() {
-  const myJSONObject = {
-    "hello":"nihoa",
-    "hello2":"yoyo",
-    "hello3":"heyhey"
-  };
 
   //Hooks
   const [request, setRequest] = useState("GET");
