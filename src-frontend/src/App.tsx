@@ -14,7 +14,7 @@ function App() {
   //Hooks
   const [request, setRequest] = useState("GET");
   const [apiPath, setApiPath] = useState("");
-  const [json, setJSON] = useState([]);
+  const [json, setJSON] = useState({});
 
   //Handler
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>){  
@@ -26,10 +26,16 @@ function App() {
         setJSON(response.data);
         break;
       case "POST":
+        response = await axios.post("http://localhost:8080/" + apiPath, json);
+        setJSON(response.data);
         break;
       case "PATCH":
+        response = await axios.patch("http://localhost:8080/" + apiPath, json);
+        setJSON(response.data);
         break;
       case "DELETE":
+        response = await axios.delete("http://localhost:8080/" + apiPath);
+        setJSON(response.data);
         break;
     }
   }
