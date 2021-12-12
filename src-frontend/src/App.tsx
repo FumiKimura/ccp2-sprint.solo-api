@@ -74,7 +74,9 @@ function App() {
         <input className="submitBtn" type="submit"></input>
       </form>
       <div className="jsonViewContainer">
-        <ReactJson src={json} onEdit={onEdit} onAdd={onAdd} onDelete={onDelete}></ReactJson>  
+        <div className="jsonViewContainerChild">
+          <ReactJson src={json} onEdit={onEdit} onAdd={onAdd} onDelete={onDelete}></ReactJson>
+        </div>
       </div>
     </div>
   );

@@ -19,9 +19,12 @@
 }
 
 .jsonViewContainer {
-    margin:4em 15em 0 15em;
-    border-color: black 1px solid;
-    background-color: white;
+    margin: 4em auto;
+    padding: 2em;
     width: 50%;
+    background-color: white;
+}
+
+.jsonViewContainerChild {
     text-align: left;
 }
