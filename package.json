@@ -6,8 +6,8 @@
    "proxy": "http://localhost:8080/",
    "scripts": {
       "dev": "node --inspect -r ts-node/register -r dotenv/config src/index.ts",
-      "build-frontend": "cd src-frontend && npm run migrate && npm run build && cd ..",
-      "start": "npm run build-frontend && ts-node -r dotenv/config --config ./src/ormconfig.ts src/index.ts ",
+      "build-frontend": "cd src-frontend && npm run build && cd ..",
+      "start": "npm run build-frontend && npm run migrate && ts-node -r dotenv/config --config ./src/ormconfig.ts src/index.ts ",
       "test": "echo \"Error: no test specified\" && exit 1",
       "makeMigrations": "npm run orm -- migration:generate -n",
       "orm": "ts-node -r dotenv/config ./node_modules/typeorm/cli.js --config src/ormconfig.ts",
