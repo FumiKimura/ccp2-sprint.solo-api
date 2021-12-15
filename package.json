@@ -3,6 +3,7 @@
    "version": "1.0.0",
    "description": "Doraemon Gadget API project as student at Code Chrysalis",
    "main": "index.js",
+   "proxy": "http://localhost:8080/",
    "scripts": {
       "dev": "node --inspect -r ts-node/register -r dotenv/config src/index.ts",
       "build-frontend": "cd src-frontend && npm install && npm run build && cd ..",
