@@ -20,7 +20,8 @@ class rootController {
     }
 
     protected getStaticFile = (req: Request, res: Response): void => {
-        res.sendFile(path.join(this.filepath, this.filename));
+        //res.sendFile(path.join(this.filepath, this.filename));
+        res.send("Hello");
     }
 }
 

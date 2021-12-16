@@ -23,7 +23,7 @@ class App {
     }
 
     public start(): void {
-        this.app.listen(this.port, 
+        this.app.listen(this.port, '0.0.0.0',
         () => console.log(`Started Listening to ${this.port}`));
     }
 }
